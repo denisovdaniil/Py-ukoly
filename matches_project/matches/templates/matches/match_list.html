@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Football matches</title>
+    <link href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css" rel="stylesheet">
+    <style>
+       
+        .team-logo {
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="title has-text-centered mt-5">Visited football matches</h1>
+        
+
+        <div class="has-text-centered">
+            <a href="{% url 'add_match' %}" class="button is-primary mb-3">Add New Match</a>
+
+        </div>
+
+        
+        <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth mt-5">
+            <thead>
+                <tr>
+                    <th>Home team</th>
+                    <th>Away team</th>
+                    <th>Tournament</th>
+                    <th>Stadium</th>
+                    <th>Date</th>
+                    <th>Result</th>
+                    <th>Note</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for match in matches %}
+                <tr>
+                    
+                    <td>
+                        <img src="{{ match.team1.logo.url }}" alt="{{ match.team1.name }} logo" class="team-logo">
+                        <a href="{% url 'team_info' match.team1.id %}">{{ match.team1.name }}</a>
+                    </td>
+
+                    
+                    <td>
+                        <img src="{{ match.team2.logo.url }}" alt="{{ match.team2.name }} logo" class="team-logo">
+                        <a href="{% url 'team_info' match.team2.id %}">{{ match.team2.name }}</a>
+                    </td>
+
+                    <td>{{ match.tournament }}</td>
+                    <td>{{ match.stadium }}</td>
+                    <td>{{ match.date | date:"d.m.Y" }}</td>
+                    <td>{{ match.result }}</td>
+                    <td>{{ match.note }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

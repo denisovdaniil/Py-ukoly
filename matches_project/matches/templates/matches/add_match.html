@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add match</title>
+    <link href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css" rel="stylesheet">
+    <style>
+        .team-logo {
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
+        }
+        .logo-upload {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="title has-text-centered mt-5">Add a new match</h1>
+
+        
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="field">
+                <label class="label">Team 1</label>
+                <div class="control">
+                    {{ form.team1 }}
+                </div>
+            </div>
+            <div class="field logo-upload">
+                <label class="label">Upload Team 1 Logo</label>
+                <div class="control">
+                    <input type="file" name="team1_logo" accept="image/*">
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label">Team 2</label>
+                <div class="control">
+                    {{ form.team2 }}
+                </div>
+            </div>
+
+            <div class="field logo-upload">
+                <label class="label">Upload Team 2 Logo</label>
+                <div class="control">
+                    <input type="file" name="team2_logo" accept="image/*">
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label">Tournament</label>
+                <div class="control">
+                    {{ form.tournament }}
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label">Stadium</label>
+                <div class="control">
+                    {{ form.stadium }}
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label">Date</label>
+                <div class="control">
+                    <input type="date" name="date" id="date" class="input" required>
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label">Result</label>
+                <div class="control">
+                    {{ form.result }}
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label">Note</label>
+                <div class="control">
+                    {{ form.note }}
+                </div>
+            </div>
+
+            <div class="field is-grouped is-grouped-centered">
+                <div class="control">
+                    <button type="submit" class="button is-primary">Add Match</button>
+                </div>
+                <div class="control">
+                    <a href="{% url 'match_list' %}" class="button is-light">Cancel</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
